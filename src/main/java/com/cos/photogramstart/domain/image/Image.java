@@ -1,4 +1,4 @@
-package com.cos.photogramstart.domain.subscribe;
+package com.cos.photogramstart.domain.image;
 
 import java.time.LocalDateTime;
 
@@ -9,8 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
 import com.cos.photogramstart.domain.user.User;
 
@@ -18,29 +16,21 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Data
 @Entity
-@Table(uniqueConstraints = { 
-		@UniqueConstraint(
-				name = "subscribe_uk", 
-				columnNames = { "fromUserId", "toUserId" }
-				) 
-		}
-)
-public class Subscribe {
+@AllArgsConstructor
+@Data
+@NoArgsConstructor
+public class Image {
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+	private String caption;
+	private String postImageUrl;
 	
-	@JoinColumn(name = "fromUserId")
+	@JoinColumn(name = "userId")
 	@ManyToOne
-	private User fromUser;
-	
-	@JoinColumn(name = "toUserId")
-	@ManyToOne
-	private User toUser;
+	private User user;
 	
 	private LocalDateTime createDate;
 	
