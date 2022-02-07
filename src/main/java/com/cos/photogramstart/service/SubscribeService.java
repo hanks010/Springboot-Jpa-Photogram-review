@@ -17,11 +17,11 @@ public class SubscribeService {
 	@Transactional
 	public void subscribe(int fromUserId, int toUserId) {
 		try {
-		subscribeRepository.mSubscribe(fromUserId, toUserId);
-		}catch(Exception e){
+			subscribeRepository.mSubscribe(fromUserId, toUserId);
+		} catch (Exception e) {
 			throw new CustomApiException("이미 구독을 하였습니다");
 		}
-		}
+	}
 
 	@Transactional
 	public void unSubscribe(int fromUserId, int toUserId) {
