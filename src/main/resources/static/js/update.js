@@ -12,7 +12,7 @@ function update(userId, event) {
 		dataType: "json" // 서버에서 받을 타입
 	}).done(res => {
 		console.log("update 성공", res);
-		//location.href =`/user/${userId}`;
+		location.href =`/user/${userId}`;
 	}).fail(error => {
 		console.log("update 실패");
 		console.log(error.responseJSON);

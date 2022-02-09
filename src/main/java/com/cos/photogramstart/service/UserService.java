@@ -2,6 +2,7 @@ package com.cos.photogramstart.service;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.cos.photogramstart.domain.user.User;
 import com.cos.photogramstart.domain.user.UserRepository;
@@ -16,6 +17,7 @@ public class UserService {
 	private final UserRepository userRepository;
 	private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
+	@Transactional
 	public User userUpdate(int id, User user) {
 		User userEntity = userRepository.findById(id).orElseThrow(() -> {
 			return new CustomValidationApiException("찾을 수 없는 id입니다");
@@ -34,8 +36,9 @@ public class UserService {
 		return userEntity;
 	}
 
+	@Transactional(readOnly = true)
 	public User profile(int userId) {
-		User userEntity = userRepository.findById(userId).orElseThrow(()->{
+		User userEntity = userRepository.findById(userId).orElseThrow(() -> {
 			throw new CustomException("해당 프로필 페이지에 없는 페이지입니다.");
 		});
 		return userEntity;

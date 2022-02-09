@@ -13,6 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 
 import com.cos.photogramstart.domain.image.Image;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -45,6 +46,7 @@ public class User {
 	private String role; // 권한
 	private LocalDateTime createDate; // 등록된 날짜
 
+	@JsonIgnoreProperties({"user"})
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
 	private List<Image> images;
 
