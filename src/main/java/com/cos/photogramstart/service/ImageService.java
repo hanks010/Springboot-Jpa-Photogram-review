@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.cos.photogramstart.config.auth.PrincipalDetails;
 import com.cos.photogramstart.domain.ImageRepository;
+import com.cos.photogramstart.domain.image.Image;
 import com.cos.photogramstart.web.dto.image.ImageUploadDto;
 
 import lombok.RequiredArgsConstructor;
@@ -31,6 +32,9 @@ public class ImageService {
 		System.out.println("이미지 파일 이름: " + imageFileName);
 
 		Path imageFilePath = Paths.get(uploadFolder + imageFileName); // 경로 + 파일 이름
+
+		Image image = imageUploadDto.toEntity(imageFileName, principalDetails.getUser());
+		Image imageEntity = imageRepository.save(image);
 
 		try {
 			Files.write(imageFilePath, imageUploadDto.getFile().getBytes());

@@ -13,6 +13,7 @@ import javax.persistence.PrePersist;
 import com.cos.photogramstart.domain.user.User;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -20,6 +21,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @NoArgsConstructor
+@Builder
 public class Image {
 	
 	@Id
