@@ -28,7 +28,7 @@ spring:
       
   servlet:
     multipart:
-      enabled: true
+      enabled: true 
       max-file-size: 2MB
 
   security:
@@ -37,4 +37,4 @@ spring:
       password: 1234   
 
 file:
-  path: /Users/user/Documents/Spring_review/upload
+  path: /Users/user/Documents/Spring_review/upload/

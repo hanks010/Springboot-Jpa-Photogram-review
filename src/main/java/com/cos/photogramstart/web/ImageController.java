@@ -22,15 +22,22 @@ public class ImageController {
 	public String story() {
 		return "image/story";
 	}
-	
+
+	@GetMapping("image/upload")
+	public String upload() {
+		return "image/upload";
+	}
+
 	@PostMapping("/image")
-	public String imageUpload(ImageUploadDto imageUploadDto, @AuthenticationPrincipal PrincipalDetails principalDetails) {
-		imageService.upload(imageUploadDto, principalDetails);
+	public String imageUpload(ImageUploadDto imageUploadDto,
+			@AuthenticationPrincipal PrincipalDetails principalDetails) {
 		
-		if(imageUploadDto.getFile().isEmpty()) { //MultipartFile 타입은 @Valid로 유효성 검사가 불가능하다
+		if (imageUploadDto.getFile().isEmpty()) { // MultipartFile 타입은 @Valid로 유효성 검사가 불가능하다
 			throw new CustomValidationException("이미지가 첨부되지 않았습니다", null);
 		}
-		return "redirect:/user/"+principalDetails.getUser().getId();
+		imageService.upload(imageUploadDto, principalDetails);
+
+		return "redirect:/user/" + principalDetails.getUser().getId();
 	}
 
 }
